@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="form.css">
+    <title>問い合わせフォーム</title>
+
+    <script>
+        // 送信完了フラグ: form submit時にtrueになる
+        let submitted = false;
+
+        const onloadFrame = () => {
+            if (submitted) {
+                // 送信完了でアラート表示する場合
+                alert("送信完了しました");
+
+                // 送信完了で別ページに遷移する場合
+                window.location = "submitted.html";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1 class="title">問い合わせフォーム</h1>
+    
+    <form 
+        action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSd45vCCPNE-u1zECyEjxwC968JFHNfJeQkNdu2QbxAjASXAnw/formResponse" 
+        method="post"
+        target="hidden-iframe"
+        onsubmit="submitted = true;"
+    >
+        <label for="entry.708877804">名前</label>
+        <input type="text" name="entry.708877804" >
+
+        <label for="entry.123094539">メールアドレス</label>
+        <input type="email" name="entry.123094539" >
+
+        <label for="entry.904089184">問い合わせ内容</label>
+        <textarea name="entry.904089184"></textarea>
+
+        <input type="submit" value="送信">
+    </form>
+
+    <iframe name="hidden-iframe" style="display: none;" onload="onloadFrame()"></iframe>
+</body>
+</html>
